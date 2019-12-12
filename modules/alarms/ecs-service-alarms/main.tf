@@ -7,11 +7,11 @@ terraform {
   required_version = ">= 0.12"
 }
 
-resource "aws_cloudwatch_metric_alarm" "ecs_service_task_running_tasks" {
+resource "aws_cloudwatch_metric_alarm" "ecs_service_running_tasks" {
   alarm_name        = "${var.ecs_cluster_name}-${var.ecs_service_name}-running-tasks"
-  alarm_description = "An alarm that goes off if the CPU usage is too high in the ECS Service ${var.ecs_service_name}."
-  namespace         = "AWS/ECS"
-  metric_name       = "CPUUtilization"
+  alarm_description = "An alarm that goes off if quantity of Tasks with the state 'Running' is less than the quantity of desired tasks for the ECS Service ${var.ecs_service_name}."
+  namespace         = "ECS/ContainerInsights"
+  metric_name       = "RunningTaskCount"
 
   dimensions = {
     ServiceName = var.ecs_service_name
@@ -19,14 +19,14 @@ resource "aws_cloudwatch_metric_alarm" "ecs_service_task_running_tasks" {
   }
 
   comparison_operator       = "LessThanThreshold"
-  evaluation_periods        = var.ecs_service_task_running_tasks_evaluation_periods
-  period                    = var.ecs_service_task_running_tasks_period
-  statistic                 = var.ecs_service_task_running_tasks_statistic
-  threshold                 = var.ecs_service_task_running_tasks_threshold
-  unit                      = "Percent"
+  evaluation_periods        = var.ecs_service_running_tasks_evaluation_periods
+  period                    = var.ecs_service_running_tasks_period
+  statistic                 = var.ecs_service_running_tasks_statistic
+  threshold                 = var.ecs_service_running_tasks_threshold
+  unit                      = "Tasks"
   alarm_actions             = var.alarm_sns_topic_arns
   ok_actions                = var.alarm_sns_topic_arns
   insufficient_data_actions = var.alarm_sns_topic_arns
-  treat_missing_data        = var.ecs_service_task_running_tasks_treat_missing_data
+  treat_missing_data        = var.ecs_service_running_tasks_treat_missing_data
   tags                      = var.tags
 }

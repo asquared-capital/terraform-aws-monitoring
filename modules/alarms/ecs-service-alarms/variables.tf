@@ -18,31 +18,31 @@ variable "ecs_cluster_name" {
   type        = string
 }
 
-variable "ecs_service_task_running_tasks_evaluation_periods" {
+variable "ecs_service_running_tasks_evaluation_periods" {
   description = "The number of periods over which data is compared to the specified threshold."
   type        = number
   default     = 1
 }
 
-variable "ecs_service_task_running_tasks_period" {
+variable "ecs_service_running_tasks_period" {
   description = "The period in seconds over which the specified statistic is applied. Amazon ECS sends metrics to CloudWatch every 60 seconds, so 60 seconds is the minimum."
   type        = number
   default     = 60
 }
 
-variable "ecs_service_task_running_tasks_statistic" {
+variable "ecs_service_running_tasks_statistic" {
   description = "The statistic to apply to the alarm's associated metric. Either of the following is supported: SampleCount, Average, Sum, Minimum, Maximum"
   type        = string
-  default     = "SampleCount"
+  default     = "Average"
 }
 
-variable "ecs_service_task_running_tasks_threshold" {
+variable "ecs_service_running_tasks_threshold" {
   description = "Trigger an alarm if the ECS Service has a CPU utilization percentage above this threshold"
   type        = number
   default     = 1
 }
 
-variable "ecs_service_task_running_tasks_treat_missing_data" {
+variable "ecs_service_running_tasks_treat_missing_data" {
   description = "Sets how this alarm is to handle missing data points. The following values are supported: missing, ignore, breaching and notBreaching."
   type        = string
   default     = "missing"
