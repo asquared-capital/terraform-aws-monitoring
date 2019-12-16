@@ -8,6 +8,12 @@ variable "alarm_sns_topic_arns" {
   type        = list(string)
 }
 
+variable "actions_enabled" {
+  description = " Indicates whether or not actions should be executed during any changes to the alarm's state. "
+  type        = bool
+  default     = true
+}
+
 variable "ecs_service_name" {
   description = "The name of the ECS Service"
   type        = string
