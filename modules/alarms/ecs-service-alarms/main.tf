@@ -8,7 +8,7 @@ terraform {
 }
 
 resource "aws_cloudwatch_metric_alarm" "ecs_service_running_tasks" {
-  alarm_name        = "${lower(var.ecs_cluster_name)}-${lower(var.ecs_service_name)}-count-running-tasks"
+  alarm_name        = "${lower(var.ecs_cluster_name)}-${lower(var.ecs_service_name)}-running-tasks-count"
   alarm_description = "An alarm that goes off if quantity of Tasks with the state 'Running' is less than the quantity of desired tasks for the ECS Service ${var.ecs_service_name}."
   namespace         = "ECS/ContainerInsights"
   metric_name       = "RunningTaskCount"
