@@ -23,7 +23,7 @@ resource "aws_cloudwatch_metric_alarm" "ecs_service_running_tasks" {
   period                    = var.ecs_service_running_tasks_period
   statistic                 = var.ecs_service_running_tasks_statistic
   threshold                 = var.ecs_service_running_tasks_threshold
-  unit                      = "Tasks"
+  unit                      = "Count"
   alarm_actions             = var.alarm_sns_topic_arns
   ok_actions                = var.alarm_sns_topic_arns
   insufficient_data_actions = var.alarm_sns_topic_arns
